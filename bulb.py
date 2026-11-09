@@ -78,7 +78,6 @@ async def pair(app):
 
 
 def xy(x, y):
-    """Convert colour coordinates to Zigbee values."""
     return int(x * 65535), int(y * 65535)
 
 
@@ -88,7 +87,6 @@ async def set_colour(ep, x, y, tenths=5):
 
 
 async def test(app):
-    """Turn the bulb on in white and leave it on."""
     ep = find_bulb(app)
 
     if ep is None:
@@ -99,8 +97,6 @@ async def test(app):
 
     await ep.on_off.on()
     await ep.level.move_to_level_with_on_off(254, 5)
-
-    # Neutral white, approximately 6500 K on a capable colour bulb.
     await set_colour(ep, 0.3127, 0.3290)
 
     print("Bulb is on in white.")
